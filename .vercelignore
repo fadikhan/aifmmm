@@ -1,0 +1,59 @@
+# Files to ignore during Vercel deployment
+
+# Environment files
+.env.local
+.env*.local
+
+# Development files
+*.md
+!README.md
+
+# Test files
+tests/
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx
+jest.config.js
+jest.setup.js
+
+# Documentation
+docs/
+COMPLETION_SUMMARY.md
+BUTTONS_WORKING.md
+DATABASE_SETUP_GUIDE.md
+FIX_*.md
+MISSING_FEATURES.md
+PROJECT_STRUCTURE.md
+QUICK_FIX.md
+QUICKSTART.md
+RESPONSIVE_GUIDE.md
+RLS_FIX.md
+SETUP_COMPLETE.md
+STORAGE_SETUP.md
+SUPABASE_SETUP.md
+UPLOAD_FIX.md
+UPLOAD_PROGRESS_FEATURE.md
+USAGE_GUIDE.md
+VERIFICATION_CHECKLIST.md
+VERCEL_DEPLOYMENT.md
+VERCEL_READY.md
+
+# SQL files
+*.sql
+
+# Scripts
+scripts/seed.js
+scripts/generateMocks.js
+
+# Git
+.git/
+.github/
+
+# IDE
+.vscode/
+.idea/
+
+# Deployment scripts
+deploy-to-vercel.bat
+deploy-to-vercel.sh

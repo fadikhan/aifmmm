@@ -1,0 +1,57 @@
+// Generate mock AI responses for local development
+// Run with: node ./scripts/generateMocks.js
+
+const fs = require('fs');
+const path = require('path');
+
+const mockDir = path.join(__dirname, '../lib/mocks');
+if (!fs.existsSync(mockDir)) {
+  fs.mkdirSync(mockDir, { recursive: true });
+}
+
+const mocks = {
+  generateText: {
+    type: 'generate',
+    prompt: 'Write a 2-minute opening scene set in golden hour Karachi',
+    response: {
+      script: 'EXT. KARACHI STREET - GOLDEN HOUR\n\nThe city breathes in the warm orange light. Two strangers\' paths converge at a bus stop.\n\n[Full generated scene content...]'
+    },
+    cost_estimate: 0.01,
+    status: 'success'
+  },
+  shotlist: {
+    type: 'shotlist',
+    prompt: 'Generate shots for this scene',
+    response: {
+      shots: [
+        { camera: 'Wide shot', movement: 'Static', duration: '10s', notes: 'Establish location' },
+        { camera: 'Medium shot', movement: 'Pan', duration: '8s', notes: 'Character A enters' },
+        { camera: 'Close-up', movement: 'Static', duration: '5s', notes: 'Eye contact' }
+      ]
+    },
+    cost_estimate: 0.01,
+    status: 'success'
+  },
+  storyboard: {
+    type: 'storyboard',
+    prompt: 'Generate 4 storyboard frames',
+    response: {
+      frames: [
+        { url: '/mock-storyboard-1.jpg', caption: 'Wide establishing shot' },
+        { url: '/mock-storyboard-2.jpg', caption: 'Medium shot of stranger' },
+        { url: '/mock-storyboard-3.jpg', caption: 'Close-up reaction' },
+        { url: '/mock-storyboard-4.jpg', caption: 'Framing with golden light' }
+      ]
+    },
+    cost_estimate: 0.02,
+    status: 'success'
+  }
+};
+
+fs.writeFileSync(
+  path.join(mockDir, 'aiResponses.json'),
+  JSON.stringify(mocks, null, 2)
+);
+
+console.log('✅ Mock AI responses generated at:', path.join(mockDir, 'aiResponses.json'));
+

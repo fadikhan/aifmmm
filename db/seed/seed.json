@@ -1,0 +1,116 @@
+{
+  "users": [
+    {
+      "id": "11111111-1111-1111-1111-111111111111",
+      "email": "adeel@aura.test",
+      "name": "Adeel Ahmed",
+      "avatar_url": null
+    }
+  ],
+  "teams": [
+    {
+      "id": "22222222-2222-2222-2222-222222222222",
+      "name": "AURA Studio",
+      "owner_id": "11111111-1111-1111-1111-111111111111",
+      "settings": {}
+    }
+  ],
+  "team_members": [
+    {
+      "id": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+      "team_id": "22222222-2222-2222-2222-222222222222",
+      "user_id": "11111111-1111-1111-1111-111111111111",
+      "role": "owner",
+      "status": "active",
+      "joined_at": "2024-01-01T00:00:00Z"
+    }
+  ],
+  "projects": [
+    {
+      "id": "33333333-3333-3333-3333-333333333333",
+      "team_id": "22222222-2222-2222-2222-222222222222",
+      "title": "Golden Hour — Short Film",
+      "description": "A neo-noir short film set in golden hour Karachi, exploring themes of connection and missed opportunities.",
+      "status": "active",
+      "settings": {
+        "genre": "neo-noir",
+        "duration": "5-7 minutes",
+        "location": "Karachi, Pakistan"
+      },
+      "created_by": "11111111-1111-1111-1111-111111111111"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "44444444-4444-4444-4444-444444444444",
+      "project_id": "33333333-3333-3333-3333-333333333333",
+      "title": "Opening - Bus Stop",
+      "content": "EXT. BUS STOP - GOLDEN HOUR\n\nA soft, warm light bathes the empty street. Two strangers meet at a bus stop.\n\nSARAH (30s), early thirties, checks her phone.\nAHMED (28), approaches hesitantly.\n\nAHMED\nSorry, is the 45 running late again?\n\nSARAH\n(looks up, smiles)\nAlways is. You new to this route?\n\nAHMED\nFirst time. Had a feeling I'd see you here.\n\n(slight smile)\nA subtle connection begins to form.",
+      "order_index": 0,
+      "metadata": {
+        "location": "bus_stop",
+        "time_of_day": "golden_hour",
+        "duration_estimate": "90 seconds"
+      }
+    }
+  ],
+  "shots": [
+    {
+      "id": "55555555-5555-5555-5555-555555555555",
+      "scene_id": "44444444-4444-4444-4444-444444444444",
+      "shot_number": 1,
+      "camera": "Wide shot",
+      "movement": "Static",
+      "duration": "10 seconds",
+      "notes": "Establish bus stop and golden hour lighting",
+      "order_index": 0
+    },
+    {
+      "id": "66666666-6666-6666-6666-666666666666",
+      "scene_id": "44444444-4444-4444-4444-444444444444",
+      "shot_number": 2,
+      "camera": "Medium close-up",
+      "movement": "Push in slowly",
+      "duration": "8 seconds",
+      "notes": "Sarah checking phone",
+      "order_index": 1
+    }
+  ],
+  "tasks": [
+    {
+      "id": "77777777-7777-7777-7777-777777777777",
+      "project_id": "33333333-3333-3333-3333-333333333333",
+      "scene_id": "44444444-4444-4444-4444-444444444444",
+      "shot_id": "55555555-5555-5555-5555-555555555555",
+      "title": "Scout bus stop location",
+      "description": "Find suitable bus stop with good golden hour lighting",
+      "status": "todo",
+      "priority": "high",
+      "assignee_id": "11111111-1111-1111-1111-111111111111"
+    }
+  ],
+  "project_blocks": [
+    {
+      "id": "88888888-8888-8888-8888-888888888888",
+      "project_id": "33333333-3333-3333-3333-333333333333",
+      "type": "section",
+      "content": "Concept Board",
+      "metadata": {
+        "level": 1
+      },
+      "order_index": 0
+    },
+    {
+      "id": "99999999-9999-9999-9999-999999999999",
+      "project_id": "33333333-3333-3333-3333-333333333333",
+      "type": "text",
+      "content": "Two strangers, one moment. What happens when time stands still?",
+      "metadata": {
+        "section": "concept"
+      },
+      "parent_id": "88888888-8888-8888-8888-888888888888",
+      "order_index": 0
+    }
+  ]
+}
+

@@ -1,0 +1,97 @@
+========================================
+NETLIFY ENVIRONMENT VARIABLES
+Copy and paste these into Netlify Dashboard
+========================================
+
+REQUIRED VARIABLES (Add during site setup or in Site Settings):
+----------------------------------------------------------------
+
+Key: NEXT_PUBLIC_SUPABASE_URL
+Value: https://ekjjgsiilbljlxebkazx.supabase.co
+
+Key: NEXT_PUBLIC_SUPABASE_ANON_KEY
+Value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVrampnc2lpbGJsamx4ZWJrYXp4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE1NjE0NzksImV4cCI6MjA3NzEzNzQ3OX0.Qa3TwXImvm7_WophxjYk-FQ0chUFcZPA09CVQwD9R6g
+
+Key: SUPABASE_SERVICE_ROLE_KEY
+Value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVrampnc2lpbGJsamx4ZWJrYXp4Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2MTU2MTQ3OSwiZXhwIjoyMDc3MTM3NDc5fQ.c-rqnF-sm2qzVPilkoYeBIDqkGZnjrhcKIvm_z3gEPM
+
+Key: GOOGLE_AI_API_KEY
+Value: AIzaSyBuRqtWO7xxBEpYeefVacQlWK9iR5fgl4o
+
+Key: SUPABASE_BUCKET_ASSETS
+Value: aura-assets
+
+Key: NODE_ENV
+Value: production
+
+
+========================================
+HOW TO ADD IN NETLIFY DASHBOARD:
+========================================
+
+OPTION 1: During Initial Setup
+-------------------------------
+1. When importing your site, click "Show advanced"
+2. Click "New variable" for each one above
+3. Enter Key and Value
+4. Click "Deploy site"
+
+OPTION 2: After Site is Created
+--------------------------------
+1. Go to your site dashboard
+2. Click "Site settings"
+3. Click "Environment variables" in sidebar
+4. Click "Add a variable"
+5. Select "Add a single variable"
+6. Enter Key and Value
+7. Click "Create variable"
+8. Repeat for all 6 variables
+9. Go to "Deploys" and click "Trigger deploy"
+
+
+========================================
+OR USE NETLIFY CLI:
+========================================
+
+# Install Netlify CLI
+npm install -g netlify-cli
+
+# Login
+netlify login
+
+# Set environment variables
+netlify env:set NEXT_PUBLIC_SUPABASE_URL "https://ekjjgsiilbljlxebkazx.supabase.co"
+netlify env:set NEXT_PUBLIC_SUPABASE_ANON_KEY "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVrampnc2lpbGJsamx4ZWJrYXp4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE1NjE0NzksImV4cCI6MjA3NzEzNzQ3OX0.Qa3TwXImvm7_WophxjYk-FQ0chUFcZPA09CVQwD9R6g"
+netlify env:set SUPABASE_SERVICE_ROLE_KEY "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVrampnc2lpbGJsamx4ZWJrYXp4Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2MTU2MTQ3OSwiZXhwIjoyMDc3MTM3NDc5fQ.c-rqnF-sm2qzVPilkoYeBIDqkGZnjrhcKIvm_z3gEPM"
+netlify env:set GOOGLE_AI_API_KEY "AIzaSyBuRqtWO7xxBEpYeefVacQlWK9iR5fgl4o"
+netlify env:set SUPABASE_BUCKET_ASSETS "aura-assets"
+netlify env:set NODE_ENV "production"
+
+# Deploy
+netlify deploy --prod
+
+
+========================================
+COPY-PASTE FORMAT (for reference):
+========================================
+
+NEXT_PUBLIC_SUPABASE_URL=https://ekjjgsiilbljlxebkazx.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVrampnc2lpbGJsamx4ZWJrYXp4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE1NjE0NzksImV4cCI6MjA3NzEzNzQ3OX0.Qa3TwXImvm7_WophxjYk-FQ0chUFcZPA09CVQwD9R6g
+SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVrampnc2lpbGJsamx4ZWJrYXp4Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2MTU2MTQ3OSwiZXhwIjoyMDc3MTM3NDc5fQ.c-rqnF-sm2qzVPilkoYeBIDqkGZnjrhcKIvm_z3gEPM
+GOOGLE_AI_API_KEY=AIzaSyBuRqtWO7xxBEpYeefVacQlWK9iR5fgl4o
+SUPABASE_BUCKET_ASSETS=aura-assets
+NODE_ENV=production
+
+
+========================================
+⚠️ SECURITY WARNING:
+========================================
+
+DO NOT commit this file to Git!
+These are your REAL API keys.
+Only add them in Netlify Dashboard or CLI.
+
+After deployment, you can delete this file:
+del NETLIFY_ENV_VARIABLES.txt
+
+========================================

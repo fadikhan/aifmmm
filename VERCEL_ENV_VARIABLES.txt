@@ -1,0 +1,87 @@
+========================================
+VERCEL ENVIRONMENT VARIABLES
+Copy and paste these into Vercel Dashboard
+========================================
+
+REQUIRED VARIABLES (Copy these exactly):
+----------------------------------------
+
+NEXT_PUBLIC_SUPABASE_URL
+https://ekjjgsiilbljlxebkazx.supabase.co
+
+NEXT_PUBLIC_SUPABASE_ANON_KEY
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVrampnc2lpbGJsamx4ZWJrYXp4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE1NjE0NzksImV4cCI6MjA3NzEzNzQ3OX0.Qa3TwXImvm7_WophxjYk-FQ0chUFcZPA09CVQwD9R6g
+
+SUPABASE_SERVICE_ROLE_KEY
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVrampnc2lpbGJsamx4ZWJrYXp4Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2MTU2MTQ3OSwiZXhwIjoyMDc3MTM3NDc5fQ.c-rqnF-sm2qzVPilkoYeBIDqkGZnjrhcKIvm_z3gEPM
+
+GOOGLE_AI_API_KEY
+AIzaSyBuRqtWO7xxBEpYeefVacQlWK9iR5fgl4o
+
+SUPABASE_BUCKET_ASSETS
+aura-assets
+
+NODE_ENV
+production
+
+
+========================================
+HOW TO ADD IN VERCEL DASHBOARD:
+========================================
+
+1. Go to your project in Vercel
+2. Click "Settings" tab
+3. Click "Environment Variables" in sidebar
+4. For each variable above:
+   - Enter the NAME (e.g., NEXT_PUBLIC_SUPABASE_URL)
+   - Enter the VALUE (the text below it)
+   - Select "Production", "Preview", and "Development"
+   - Click "Save"
+
+========================================
+OR USE VERCEL CLI:
+========================================
+
+vercel env add NEXT_PUBLIC_SUPABASE_URL production
+# Paste: https://ekjjgsiilbljlxebkazx.supabase.co
+
+vercel env add NEXT_PUBLIC_SUPABASE_ANON_KEY production
+# Paste: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVrampnc2lpbGJsamx4ZWJrYXp4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE1NjE0NzksImV4cCI6MjA3NzEzNzQ3OX0.Qa3TwXImvm7_WophxjYk-FQ0chUFcZPA09CVQwD9R6g
+
+vercel env add SUPABASE_SERVICE_ROLE_KEY production
+# Paste: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVrampnc2lpbGJsamx4ZWJrYXp4Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2MTU2MTQ3OSwiZXhwIjoyMDc3MTM3NDc5fQ.c-rqnF-sm2qzVPilkoYeBIDqkGZnjrhcKIvm_z3gEPM
+
+vercel env add GOOGLE_AI_API_KEY production
+# Paste: AIzaSyBuRqtWO7xxBEpYeefVacQlWK9iR5fgl4o
+
+vercel env add SUPABASE_BUCKET_ASSETS production
+# Paste: aura-assets
+
+vercel env add NODE_ENV production
+# Paste: production
+
+
+========================================
+COPY-PASTE FORMAT (for .env):
+========================================
+
+NEXT_PUBLIC_SUPABASE_URL=https://ekjjgsiilbljlxebkazx.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVrampnc2lpbGJsamx4ZWJrYXp4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE1NjE0NzksImV4cCI6MjA3NzEzNzQ3OX0.Qa3TwXImvm7_WophxjYk-FQ0chUFcZPA09CVQwD9R6g
+SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVrampnc2lpbGJsamx4ZWJrYXp4Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2MTU2MTQ3OSwiZXhwIjoyMDc3MTM3NDc5fQ.c-rqnF-sm2qzVPilkoYeBIDqkGZnjrhcKIvm_z3gEPM
+GOOGLE_AI_API_KEY=AIzaSyBuRqtWO7xxBEpYeefVacQlWK9iR5fgl4o
+SUPABASE_BUCKET_ASSETS=aura-assets
+NODE_ENV=production
+
+
+========================================
+⚠️ SECURITY WARNING:
+========================================
+
+DO NOT commit this file to Git!
+These are your REAL API keys.
+Only add them in Vercel Dashboard.
+
+After deployment, you can delete this file:
+del VERCEL_ENV_VARIABLES.txt
+
+========================================
