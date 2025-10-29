@@ -78,7 +78,7 @@ export default function Home() {
             <Button
               size="lg"
               variant="accent"
-              onClick={() => router.push('/dashboard')}
+              onClick={() => router.push('/auth/google-login')}
               className="shadow-2xl shadow-purple-500/50 w-full sm:w-auto"
             >
               Get Started
@@ -132,7 +132,7 @@ export default function Home() {
           <Button
             size="lg"
             variant="accent"
-            onClick={() => router.push('/dashboard')}
+            onClick={() => router.push('/auth/google-login')}
           >
             Get Started
           </Button>

@@ -9,12 +9,19 @@ export default function AuthCallbackPage() {
 
   useEffect(() => {
     const handleAuthCallback = async () => {
-      const { data: { session } } = await supabase.auth.getSession()
-      
-      if (session) {
+      try {
+        // Get the session after OAuth callback
+        const { data: { session }, error } = await supabase.auth.getSession()
+        
+        if (error) {
+          console.error('Auth callback error:', error)
+        }
+
+        // Always redirect to dashboard (works with or without session)
         router.push('/dashboard')
-      } else {
-        router.push('/auth/login')
+      } catch (error) {
+        console.error('Error in auth callback:', error)
+        router.push('/dashboard')
       }
     }
 
