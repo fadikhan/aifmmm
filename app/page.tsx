@@ -78,18 +78,10 @@ export default function Home() {
             <Button
               size="lg"
               variant="accent"
-              onClick={() => router.push('/auth/register')}
+              onClick={() => router.push('/dashboard')}
               className="shadow-2xl shadow-purple-500/50 w-full sm:w-auto"
             >
               Get Started
-            </Button>
-            <Button
-              size="lg"
-              variant="secondary"
-              onClick={() => router.push('/auth/login')}
-              className="backdrop-blur-md w-full sm:w-auto"
-            >
-              Sign In
             </Button>
           </div>
 
@@ -140,7 +132,7 @@ export default function Home() {
           <Button
             size="lg"
             variant="accent"
-            onClick={() => router.push('/auth/register')}
+            onClick={() => router.push('/dashboard')}
           >
             Get Started
           </Button>
