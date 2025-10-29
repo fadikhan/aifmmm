@@ -50,7 +50,7 @@ export function VideoPlayer({ videoUrl, projectId, assetId }: VideoPlayerProps) 
   const [comments, setComments] = useState<TimestampComment[]>([])
   const [showCommentInput, setShowCommentInput] = useState(false)
   const [newComment, setNewComment] = useState('')
-  const [currentUser] = useState(() => {
+  const [currentUser, setCurrentUser] = useState(() => {
     // Get or create user identity
     const stored = localStorage.getItem('aura_user')
     if (stored) return JSON.parse(stored)
@@ -62,6 +62,25 @@ export function VideoPlayer({ videoUrl, projectId, assetId }: VideoPlayerProps) 
     localStorage.setItem('aura_user', JSON.stringify(user))
     return user
   })
+
+  // Get user from Supabase auth
+  useEffect(() => {
+    const getUserFromAuth = async () => {
+      const { supabase } = await import('@/lib/supabaseClient')
+      const { data: { user } } = await supabase.auth.getUser()
+      
+      if (user) {
+        const userName = user.user_metadata?.full_name || user.email?.split('@')[0] || 'Anonymous'
+        const userColor = getUserColor(userName)
+        const authUser = { name: userName, color: userColor }
+        
+        setCurrentUser(authUser)
+        localStorage.setItem('aura_user', JSON.stringify(authUser))
+      }
+    }
+    
+    getUserFromAuth()
+  }, [])
   const [uniqueUsers, setUniqueUsers] = useState<Array<{name: string, color: string}>>([])
 
   useEffect(() => {
