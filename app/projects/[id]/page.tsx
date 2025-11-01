@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
-import { ArrowLeft, Sparkles, Film, Upload, Settings } from 'lucide-react'
+import { ArrowLeft, Sparkles, Film, Upload } from 'lucide-react'
 import { GlassCard } from '@/components/UI/GlassCard'
 import { Button } from '@/components/UI/Button'
 import { CopilotDock } from '@/components/AI/CopilotDock'
@@ -135,10 +135,6 @@ export default function ProjectPage() {
             <h1 className="text-2xl font-bold text-white">{project.title}</h1>
             <p className="text-white/60 text-sm">{project.description}</p>
           </div>
-          <Button variant="secondary">
-            <Settings className="w-4 h-4 mr-2" />
-            Settings
-          </Button>
         </div>
       </header>
 
