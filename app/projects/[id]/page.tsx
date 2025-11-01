@@ -8,6 +8,7 @@ import { GlassCard } from '@/components/UI/GlassCard'
 import { Button } from '@/components/UI/Button'
 import { CopilotDock } from '@/components/AI/CopilotDock'
 import { CommandPalette } from '@/components/AI/CommandPalette'
+import { ShotlistManager } from '@/components/Scenes/ShotlistManager'
 
 interface Project {
   id: string
@@ -30,6 +31,8 @@ export default function ProjectPage() {
   const [project, setProject] = useState<Project | null>(null)
   const [scenes, setScenes] = useState<Scene[]>([])
   const [isLoading, setIsLoading] = useState(true)
+  const [showShotlist, setShowShotlist] = useState(false)
+  const [isGeneratingScenes, setIsGeneratingScenes] = useState(false)
 
   useEffect(() => {
     fetchProject()
@@ -69,6 +72,37 @@ export default function ProjectPage() {
     } catch (error) {
       console.error('AI generation failed:', error)
       return 'Error generating response. Please try again.'
+    }
+  }
+
+  const handleSaveScenes = async (updatedScenes: Scene[]) => {
+    try {
+      // Update scenes with new order
+      const scenesWithOrder = updatedScenes.map((scene, index) => ({
+        ...scene,
+        order_index: index,
+      }))
+
+      // Save to database
+      const response = await fetch('/api/scenes', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          projectId: params.id,
+          scenes: scenesWithOrder,
+        }),
+      })
+
+      if (response.ok) {
+        const data = await response.json()
+        setScenes(data.scenes)
+        alert('✅ Scenes saved successfully!')
+      } else {
+        throw new Error('Failed to save scenes')
+      }
+    } catch (error) {
+      console.error('Error saving scenes:', error)
+      alert('❌ Failed to save scenes. Please try again.')
     }
   }
 
@@ -117,34 +151,65 @@ export default function ProjectPage() {
             variant="secondary"
             className="flex-col h-auto py-4"
             onClick={async () => {
-              const newScene = {
-                id: `scene-${Date.now()}`,
-                title: 'New Scene',
-                content: await handleAICommand('Write a 2-minute opening scene'),
-                order_index: scenes.length,
+              setIsGeneratingScenes(true)
+              try {
+                // Fetch storyboard analysis for this project
+                const response = await fetch(`/api/storyboard-analyses?project_id=${params.id}`)
+                
+                if (response.ok) {
+                  const analysis = await response.json()
+                  
+                  if (analysis && analysis.scenes) {
+                    // Extract scenes from the analysis
+                    const generatedScenes: Scene[] = []
+                    const analysisScenes = analysis.scenes
+                    
+                    if (Array.isArray(analysisScenes)) {
+                      analysisScenes.forEach((scene: any, index: number) => {
+                        generatedScenes.push({
+                          id: `scene-${Date.now()}-${index}`,
+                          title: scene.title || scene.description || `Scene ${index + 1}`,
+                          content: scene.description || scene.dialogue || scene.action || scene.details || 'No description available',
+                          order_index: scenes.length + index,
+                        })
+                      })
+                    }
+                    
+                    if (generatedScenes.length > 0) {
+                      setScenes([...scenes, ...generatedScenes])
+                      alert(`✅ Generated ${generatedScenes.length} scenes from storyboard!`)
+                    } else {
+                      alert('⚠️ No scenes found in storyboard analysis. The analysis might not contain scene data.')
+                    }
+                  } else {
+                    alert('⚠️ No storyboard analysis found. Please analyze a storyboard first in the Studio tab.')
+                  }
+                } else if (response.status === 400) {
+                  alert('⚠️ Invalid project ID')
+                } else {
+                  throw new Error('Failed to fetch analysis')
+                }
+              } catch (error) {
+                console.error('Error generating scenes:', error)
+                alert('❌ Failed to generate scenes. Please try again.')
+              } finally {
+                setIsGeneratingScenes(false)
               }
-              setScenes([...scenes, newScene])
-              alert('Scene created! Refresh to see it in the list.')
             }}
+            disabled={isGeneratingScenes}
           >
             <Sparkles className="w-6 h-6 mb-2" />
-            <span className="text-xs">Generate Scene</span>
+            <span className="text-xs">{isGeneratingScenes ? 'Generating...' : 'Generate Scenes'}</span>
           </Button>
             <Button
               variant="secondary"
               className="flex-col h-auto py-4"
-              onClick={async () => {
-                const response = await fetch('/api/ai/generate', {
-                  method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify({
-                    type: 'shotlist',
-                    prompt: 'Generate a shotlist for this project',
-                    context: 'Sample scene context',
-                  }),
-                })
-                const data = await response.json()
-                alert('Shotlist generated! Feature coming soon.')
+              onClick={() => {
+                if (scenes.length === 0) {
+                  alert('Please generate or add scenes first!')
+                  return
+                }
+                setShowShotlist(true)
               }}
             >
               <Film className="w-6 h-6 mb-2" />
@@ -221,6 +286,15 @@ export default function ProjectPage() {
 
       <CommandPalette onCommand={handleAICommand} />
       <CopilotDock onGenerate={handleAICommand} />
+      
+      {showShotlist && (
+        <ShotlistManager
+          projectId={params.id as string}
+          scenes={scenes}
+          onClose={() => setShowShotlist(false)}
+          onSave={handleSaveScenes}
+        />
+      )}
     </div>
   )
 }
